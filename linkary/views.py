@@ -11,7 +11,7 @@ class LinkListView(ListView):
     ordering = ['-time_created']
 
 
-class LinkDetailView(DetailView):
+class LinkDetailView(LoginRequiredMixin, DetailView):
     model = models.Link
 
 
