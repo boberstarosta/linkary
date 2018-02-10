@@ -6,6 +6,7 @@ from . import models
 class LinkListView(ListView):
     model = models.Link
     template_name = 'linkary/index.html'
+    ordering = ['-time_created']
 
 
 class LinkDetailView(DetailView):
