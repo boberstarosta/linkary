@@ -14,6 +14,8 @@ class Category(models.Model):
 
 
 class Link(models.Model):
+    time_created = models.DateTimeField(auto_now_add=True)
+    time_modified = models.DateTimeField(auto_now=True)
     url = models.URLField()
     name = models.CharField(max_length=500)
 
