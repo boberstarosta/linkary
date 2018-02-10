@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <p>Logowanie nie powiodło się.</p>
+            </div>
+        {% endif %}
+
+        {% if next %}
+            {% if user.is_authenticated %}
+                <p>You don't have access to this page.</p>
+            {% else %}
+                <p>Log in to see this page.</p>
+            {% endif %}
+        {% endif %}
+        <h3>Logowanie</h3>
+        <form method="post" action="{% url 'login' %}" class="form-horizontal">
+            <fieldset>
+                {% csrf_token %}
+                <div class="form-group {% if form.username.errors %}has-error{% endif %}">
+                    <label class="control-label">{{ form.username.label_tag }}</label>
+                    <div class="controls">{{ form.username }}</div>
+                </div>
+                <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+                    <label class="control-label">{{ form.password.label_tag }}</label>
+                    <div class="controls">{{ form.password }}</div>
+                </div>
+
+                <div class="form-group">
+                  <input type="submit" value="Login" class="btn btn-primary">
+                  <input type="hidden" name="next" value="{{ next }}" />
+                </div>
+            </fieldset>
+        </form>
+
+    </div>
+{% endblock %}
