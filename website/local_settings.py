@@ -1,7 +1,5 @@
 from .settings import *
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 SECRET_KEY = 'dev-not-so-secret-key'
 
 DEBUG = True
@@ -14,5 +12,3 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-STATIC_URL = '/static/'
