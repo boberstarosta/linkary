@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, FormMixin
+from django.views.generic.edit import CreateView, UpdateView, FormMixin
 from . import models
 
 
@@ -24,5 +24,10 @@ class BootstrapFormMixin(FormMixin):
 
 
 class LinkCreateView(BootstrapFormMixin, CreateView):
+    model = models.Link
+    fields = '__all__'
+
+
+class LinkUpdateView(BootstrapFormMixin, UpdateView):
     model = models.Link
     fields = '__all__'
