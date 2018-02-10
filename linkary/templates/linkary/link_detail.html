@@ -9,7 +9,7 @@
                 <h3 class="panel-title pull-left" style="padding-top: 7.5px;">Link details</h3>
                 <div class="btn-group pull-right">
                     <a href="{% url 'link_edit' object.pk %}" class="btn btn-primary btn-sm" title="Edit">Edit</a>
-                    <a href="#" class="btn btn-warning btn-sm" title="Delete">Delete</a>
+                    <a href="{% url 'link_delete' object.pk %}" class="btn btn-warning btn-sm" title="Delete">Delete</a>
                 </div>
             </div>
             <div class="panel-body">

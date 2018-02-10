@@ -1,5 +1,6 @@
+from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, UpdateView, FormMixin
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormMixin
 from . import models
 
 
@@ -31,3 +32,8 @@ class LinkCreateView(BootstrapFormMixin, CreateView):
 class LinkUpdateView(BootstrapFormMixin, UpdateView):
     model = models.Link
     fields = '__all__'
+
+
+class LinkDeleteView(DeleteView):
+    model = models.Link
+    success_url = reverse_lazy('index')
