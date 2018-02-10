@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormMixin
@@ -24,16 +25,16 @@ class BootstrapFormMixin(FormMixin):
         return form
 
 
-class LinkCreateView(BootstrapFormMixin, CreateView):
+class LinkCreateView(LoginRequiredMixin, BootstrapFormMixin, CreateView):
     model = models.Link
     fields = '__all__'
 
 
-class LinkUpdateView(BootstrapFormMixin, UpdateView):
+class LinkUpdateView(LoginRequiredMixin, BootstrapFormMixin, UpdateView):
     model = models.Link
     fields = '__all__'
 
 
-class LinkDeleteView(DeleteView):
+class LinkDeleteView(LoginRequiredMixin, DeleteView):
     model = models.Link
     success_url = reverse_lazy('index')
