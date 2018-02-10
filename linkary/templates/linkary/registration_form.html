@@ -1,20 +1,10 @@
 {% extends 'linkary/base.html' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Register{% endblock %}
 
 {% block content %}
     <div class="container">
-        {% if next %}
-            <div class="alert alert-info">
-                {% if user.is_authenticated %}
-                    <p>You don't have access to this page.</p>
-                {% else %}
-                    <p>You have to be logged in to see this page.</p>
-                {% endif %}
-            </div>
-        {% endif %}
-
-        <div class="page-header"><h1>Login</h1></div>
+        <div class="page-header"><h1>Registration</h1></div>
 
         <form class="form-horizontal" action="" method="post">
             {% csrf_token %}
@@ -50,18 +40,23 @@
             </div>
 
             <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <span class="text-danger small">{{ form.password_confirm.errors }}</span>
+                </div>
+                <label class="control-label col-sm-2">
+                    {{ form.password_confirm.label_tag }}
+                </label>
+                <div class="col-sm-8">
+                    <input class="form-control" id="{{ form.password_confirm.id_for_label }}" name="{{ form.password_confirm.html_name }}"
+                           value="" type="password" />
+                </div>
+            </div>
+
+            <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-success">Save</button>
                 </div>
             </div>
         </form>
-
-        <hr>
-
-        <p>
-            <h4>or,  you don't have an account yet.</h4>
-            <a href="{% url 'user_register' %}" class="btn btn-default">Register</a>
-        </p>
-
     </div>
 {% endblock %}
