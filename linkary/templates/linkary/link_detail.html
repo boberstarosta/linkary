@@ -1,0 +1,21 @@
+{% extends 'linkary/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left" style="padding-top: 7.5px;">Link details</h3>
+                <div class="btn-group pull-right">
+                    <a href="#" class="btn btn-primary btn-sm" title="Edit">Edit</a>
+                    <a href="#" class="btn btn-warning btn-sm" title="Delete">Delete</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <h3>{{ object.name }}</h3>
+                <a href="{{ object.url }}">{{ object.url }}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
