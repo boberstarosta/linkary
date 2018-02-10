@@ -4,37 +4,43 @@
 
 {% block content %}
     <div class="container">
-        {% if form.errors %}
-            <div class="alert alert-danger">
-                <p>Logowanie nie powiodło się.</p>
+        {% if next %}
+            <div class="alert alert-info">
+                {% if user.is_authenticated %}
+                    <p>You don't have access to this page.</p>
+                {% else %}
+                    <p>You have to be logged in to see this page.</p>
+                {% endif %}
             </div>
         {% endif %}
 
-        {% if next %}
-            {% if user.is_authenticated %}
-                <p>You don't have access to this page.</p>
-            {% else %}
-                <p>Log in to see this page.</p>
-            {% endif %}
-        {% endif %}
-        <h3>Logowanie</h3>
-        <form method="post" action="{% url 'login' %}" class="form-horizontal">
-            <fieldset>
-                {% csrf_token %}
-                <div class="form-group {% if form.username.errors %}has-error{% endif %}">
-                    <label class="control-label">{{ form.username.label_tag }}</label>
-                    <div class="controls">{{ form.username }}</div>
-                </div>
-                <div class="form-group {% if form.password.errors %}has-error{% endif %}">
-                    <label class="control-label">{{ form.password.label_tag }}</label>
-                    <div class="controls">{{ form.password }}</div>
-                </div>
+        <div class="page-header"><h1>Login</h1></div>
 
+        <form class="form-horizontal" action="" method="post">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+            {% endif %}
+
+            {% for field in form %}
                 <div class="form-group">
-                  <input type="submit" value="Login" class="btn btn-primary">
-                  <input type="hidden" name="next" value="{{ next }}" />
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <span class="text-danger small">{{ field.errors }}</span>
+                    </div>
+                    <label class="control-label col-sm-3">
+                        {{ field.label_tag }}
+                        {% if field.field.required %}<span class="font-weight-normal small">*</span>{% endif %}
+                    </label>
+                    <div class="col-sm-9">{{ field }}</div>
                 </div>
-            </fieldset>
+            {% endfor %}
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </div>
         </form>
 
     </div>
