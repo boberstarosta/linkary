@@ -14,8 +14,7 @@
                     <th></th>
                     <th>Link</th>
                     <th>Category</th>
-                    <th>Author</th>
-                    <th>Last change</th>
+                    <th>Time</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +37,6 @@
                         <td>
                             {% if link.category %}<a href="{{ link.category.get_absolute_url }}">{{ link.category }}</a>{% endif %}
                         </td>
-                        <td>{{ link.author }}</td>
                         <td>{{ link.time_modified|date:'Y-m-d H:i:s' }}</td>
                     </tr>
                 {% endfor %}
