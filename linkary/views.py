@@ -3,15 +3,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, View
-from django.views.generic.edit import UpdateView, DeleteView, FormMixin
+from django.views.generic.edit import UpdateView, DeleteView
 from . import forms, models
 
 
-class LinkListView(ListView):
-    model = models.Link
-    template_name = 'linkary/index.html'
-    ordering = ['-time_created']
-
+##################################################################
+#                          User Views                            #
+##################################################################
 
 class UserRegistrationView(View):
     form_class = forms.UserRegistrationForm
@@ -44,6 +42,16 @@ class UserRegistrationView(View):
                     return redirect('index')
 
         return render(request, self.template_name, {'form': form})
+
+
+##################################################################
+#                          Link Views                            #
+##################################################################
+
+class LinkListView(ListView):
+    model = models.Link
+    template_name = 'linkary/index.html'
+    ordering = ['-time_created']
 
 
 class LinkDetailView(LoginRequiredMixin, DetailView):
@@ -79,6 +87,11 @@ class LinkUpdateView(LoginRequiredMixin, UpdateView):
 class LinkDeleteView(LoginRequiredMixin, DeleteView):
     model = models.Link
     success_url = reverse_lazy('index')
+
+
+##################################################################
+#                       Category Views                           #
+##################################################################
 
 
 class CategoryListView(LoginRequiredMixin, ListView):
