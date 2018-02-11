@@ -50,17 +50,7 @@ class LinkDetailView(LoginRequiredMixin, DetailView):
     model = models.Link
 
 
-class BootstrapFormMixin(FormMixin):
-    """Inherit from this class to create forms tagged for bootstrap."""
-    def get_form(self, form_class=None):
-        """Add bootstrap class "form-control" to each field before returning form."""
-        form = super().get_form(form_class)
-        for field in form.fields.values():
-            field.widget.attrs.update({'class': 'form-control'})
-        return form
-
-
-class LinkCreateView(LoginRequiredMixin, BootstrapFormMixin, View):
+class LinkCreateView(LoginRequiredMixin, View):
     form_class = forms.LinkModelForm
     template_name = 'linkary/link_create_form.html'
 
@@ -80,7 +70,7 @@ class LinkCreateView(LoginRequiredMixin, BootstrapFormMixin, View):
         return render(request, self.template_name, {'form': form})
 
 
-class LinkUpdateView(LoginRequiredMixin, BootstrapFormMixin, UpdateView):
+class LinkUpdateView(LoginRequiredMixin, UpdateView):
     model = models.Link
     form_class = forms.LinkModelForm
     template_name = 'linkary/link_update_form.html'
