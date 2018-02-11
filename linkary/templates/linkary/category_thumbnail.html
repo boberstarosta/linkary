@@ -1,31 +1,46 @@
 <div class="col-md-12">
     <div class="panel panel-default">
-        <div class="panel-heading clearfix">
-            <h3 class="panel-title pull-left">{{ category }}</h3>
-            <div class="pull-right">
-                <a href="{% url 'category_edit' category.pk %}" class="btn btn-default btn-sm" title="Edit">
-                    <span class="glyphicon glyphicon-edit"></span>
-                </a>
-                <a href="{% url 'category_delete' category.pk %}" class="btn btn-default btn-sm" title="Delete">
-                    <span class="glyphicon glyphicon-trash"></span>
-                </a>
+        <div class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{% url 'category_detail' category.pk %}" title="View details">
+                        <span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;{{ category.name }}
+                    </a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" title="New Link">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            New Link
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="{% url 'category_edit' category.pk %}" title="Edit">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'category_delete' category.pk %}" title="Delete">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-            {% if category.link_set.count %}
-                <table class="table table-condensed">
-                    <thead>
-                        <tr><th>Latest links</th></tr>
-                    </thead>
-                    {% for link in category.latest_links %}
-                    <tr><td><a href="{{ link.url }}">{{ link.name }}</a></td></tr>
-                    {% endfor %}
-                </table>
-            {% else %}
-                <div class="panel-body">No links here</div>
-            {% endif %}
-        <div class="panel-footer">
-            <a href="{% url 'category_detail' category.pk %}" class="btn btn-default">Details</a>
-            <a href="#" class="btn btn-default">Add Link</a>
-        </div>
+
+        {% if category.link_set.count %}
+            <table class="table table-condensed">
+                <thead>
+                    <tr><th>Latest links</th></tr>
+                </thead>
+                {% for link in category.latest_links %}
+                <tr><td><a href="{{ link.url }}">{{ link.name }}</a></td></tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <div class="panel-body">No links here</div>
+        {% endif %}
     </div>
 </div>
