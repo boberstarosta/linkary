@@ -13,7 +13,7 @@ class BootstrapModelForm(forms.ModelForm):
 
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
-    password_confirm = forms.CharField(widget=forms.PasswordInput)
+    password_confirm = forms.CharField(widget=forms.PasswordInput, label='Confirm password')
 
     class Meta:
         model = User
