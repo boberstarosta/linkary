@@ -63,7 +63,12 @@ class LinkCreateView(LoginRequiredMixin, View):
     template_name = 'linkary/link_create_form.html'
 
     def get(self, request):
-        form = self.form_class(None)
+        category_id = request.GET.get('category')
+        try:
+            category = models.Category.objects.get(id=category_id)
+        except models.Category.DoesNotExist:
+            category = None
+        form = self.form_class(initial={'category': category})
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
