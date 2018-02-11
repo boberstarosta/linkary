@@ -1,0 +1,16 @@
+{% extends 'linkary/base.html' %}
+
+{% block title %}Link{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Create new Link</h3>
+        </div>
+        <div class="panel-body">
+            {% include 'linkary/base_form.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}

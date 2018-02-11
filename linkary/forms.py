@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
+from . import models
 
 
 class UserRegistrationForm(forms.ModelForm):
@@ -20,3 +21,11 @@ class UserRegistrationForm(forms.ModelForm):
             if password != password_confirm:
                 raise forms.ValidationError("The two password fields must match.")
         return cleaned_data
+
+
+class LinkModelForm(forms.ModelForm):
+    author = forms.Field(widget=forms.HiddenInput)
+
+    class Meta:
+        model = models.Link
+        fields = ['url', 'name', 'author']

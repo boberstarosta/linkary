@@ -30,6 +30,8 @@ class BootstrapFormMixin(FormMixin):
 class LinkCreateView(LoginRequiredMixin, BootstrapFormMixin, CreateView):
     model = models.Link
     fields = '__all__'
+    form_class = forms.LinkModelForm
+    template_name = 'linkary/link_create_form.html'
 
 
 class LinkUpdateView(LoginRequiredMixin, BootstrapFormMixin, UpdateView):
