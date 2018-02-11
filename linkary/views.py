@@ -49,7 +49,7 @@ class LinkCreateView(LoginRequiredMixin, BootstrapFormMixin, View):
 
 class LinkUpdateView(LoginRequiredMixin, BootstrapFormMixin, UpdateView):
     model = models.Link
-    fields = '__all__'
+    fields = ['url', 'name']
 
 
 class LinkDeleteView(LoginRequiredMixin, DeleteView):
