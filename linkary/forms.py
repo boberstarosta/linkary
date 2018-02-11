@@ -24,8 +24,6 @@ class UserRegistrationForm(forms.ModelForm):
 
 
 class LinkModelForm(forms.ModelForm):
-    author = forms.Field(widget=forms.HiddenInput)
-
     class Meta:
         model = models.Link
-        fields = ['url', 'name', 'author']
+        exclude = ['author']

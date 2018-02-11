@@ -27,11 +27,24 @@ class BootstrapFormMixin(FormMixin):
         return form
 
 
-class LinkCreateView(LoginRequiredMixin, BootstrapFormMixin, CreateView):
-    model = models.Link
-    fields = '__all__'
+class LinkCreateView(LoginRequiredMixin, BootstrapFormMixin, View):
     form_class = forms.LinkModelForm
     template_name = 'linkary/link_create_form.html'
+
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+            link = form.save(commit=False)
+            link.author = request.user
+            link.save()
+            return redirect('link_detail', pk=link.pk)
+
+        return render(request, self.template_name, {'form': form})
 
 
 class LinkUpdateView(LoginRequiredMixin, BootstrapFormMixin, UpdateView):
