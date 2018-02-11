@@ -20,26 +20,9 @@
             <!-- Category list -->
             <div class="col-sm-8">
                 <div class="container-fluid">
-                    <div class="row">
+                    <div class="row row-eq-height">
                         {% for category in object_list %}
-                            <div class="col-md-4">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading clearfix">
-                                        <h3 class="panel-title pull-left">{{ category }}</h3>
-                                        <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-sm" title="Edit">
-                                                <span class="glyphicon glyphicon-edit"></span>
-                                            </a>
-                                            <a href="#" class="btn btn-default btn-sm" title="Delete">
-                                                <span class="glyphicon glyphicon-trash"></span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="panel-body">
-
-                                    </div>
-                                </div>
-                            </div>
+                            {% include 'linkary/category_thumbnail.html' %}
                         {% empty %}
                             <h3><small>No categories to show</small></h3>
                         {% endfor %}

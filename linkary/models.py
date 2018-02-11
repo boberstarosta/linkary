@@ -20,6 +20,10 @@ class Category(TimedModel):
     def __str__(self):
         return self.name
 
+    def latest_links(self):
+        result = self.link_set.order_by('-time_modified')[:10]
+        return result
+
 
 class Link(TimedModel):
     url = models.URLField()
