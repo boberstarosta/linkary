@@ -35,9 +35,11 @@
                         <td>
                             <a href="{{ link.url }}" target="_blank">{{ link.name }}</a>
                         </td>
-                        <td>{{ link.category }}</td>
+                        <td>
+                            {% if link.category %}<a href="{{ link.category.get_absolute_url }}">{{ link.category }}</a>{% endif %}
+                        </td>
                         <td>{{ link.author }}</td>
-                        <td>{{ link.time_modified.date }}</td>
+                        <td>{{ link.time_modified|date:'Y-m-d H:i:s' }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
