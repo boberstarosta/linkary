@@ -27,6 +27,9 @@ class Link(TimedModel):
     author = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True)
 
+    class Meta:
+        get_latest_by = ['time_created']
+
     def get_absolute_url(self):
         return reverse('link_detail', kwargs={'pk': self.pk})
 
