@@ -2,7 +2,7 @@ from django.contrib import auth
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, View
+from django.views.generic import CreateView, DetailView, ListView, View
 from django.views.generic.edit import UpdateView, DeleteView, FormMixin
 from . import forms, models
 
@@ -94,3 +94,9 @@ class LinkDeleteView(LoginRequiredMixin, DeleteView):
 class CategoryListView(LoginRequiredMixin, ListView):
     model = models.Category
     ordering = ['name']
+
+
+class CategoryCreateView(LoginRequiredMixin, CreateView):
+    model = models.Category
+    form_class = forms.CategoryModelForm
+    success_url = reverse_lazy('category_list')

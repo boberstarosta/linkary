@@ -7,16 +7,28 @@
         <div class="page-header">
             <h1 class="text-center">Categories</h1>
         </div>
-        <ul class="list-group">
-        </ul>
+    </div>
+    <div class="container-fluid">
         <div class="row">
-            {% for category in object_list %}
-                <div class="col-md-3">
-                    <h3>{{ category }}</h3>
+            <!-- Side menu -->
+            <div class="col-sm-1">
+                <a href="{% url 'category_create' %}" class="btn btn-primary btn-block">New Category</a>
+            </div>
+
+            <!-- Category list -->
+            <div class="col-sm-offset-1 col-sm-10">
+                <div class="container-fluid">
+                    <div class="row">
+                        {% for category in object_list %}
+                            <div class="col-md-3">
+                                <h3>{{ category }}</h3>
+                            </div>
+                        {% empty %}
+                            <h3><small>No categories to show</small></h3>
+                        {% endfor %}
+                    </div>
                 </div>
-            {% empty %}
-                <h3><small>No categories to show</small></h3>
-            {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}

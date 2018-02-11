@@ -35,3 +35,9 @@ class LinkModelForm(BootstrapModelForm):
     class Meta:
         model = models.Link
         exclude = ['author']
+
+
+class CategoryModelForm(BootstrapModelForm):
+    class Meta:
+        model = models.Category
+        fields = ['name']
