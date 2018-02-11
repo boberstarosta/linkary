@@ -11,7 +11,11 @@
         <table class="table table-condensed table-hover">
             <thead>
                 <tr>
-                    <th>Latest links</th>
+                    <th></th>
+                    <th>Link</th>
+                    <th>Category</th>
+                    <th>Author</th>
+                    <th>Last change</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,8 +31,13 @@
                             <a href="{% url 'link_delete' link.pk %}"class="btn btn-default btn-xs" title="Delete...">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </a>&nbsp;
+                        </td>
+                        <td>
                             <a href="{{ link.url }}" target="_blank">{{ link.name }}</a>
                         </td>
+                        <td>{{ link.category }}</td>
+                        <td>{{ link.author }}</td>
+                        <td>{{ link.time_modified.date }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
