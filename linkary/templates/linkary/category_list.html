@@ -14,6 +14,8 @@
                 <div class="col-md-3">
                     <h3>{{ category }}</h3>
                 </div>
+            {% empty %}
+                <h3><small>No categories to show</small></h3>
             {% endfor %}
         </div>
     </div>
