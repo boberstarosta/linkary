@@ -33,14 +33,20 @@
         {% if category.link_set.count %}
             <table class="table table-condensed">
                 <thead>
-                    <tr><th>Latest links</th></tr>
+                    <tr>
+                        <th>Latest links</th>
+                        <th class="text-right"></th>
+                    </tr>
                 </thead>
                 {% for link in category.latest_links %}
-                <tr><td><a href="{{ link.url }}">{{ link.name }}</a></td></tr>
+                <tr>
+                    <td><a href="{{ link.url }}">{{ link.name }}</a></td>
+                    <td class="text-right">{{ link.time_modified|date:'Y-m-d H:i:s' }}</td>
+                </tr>
                 {% endfor %}
             </table>
         {% else %}
-            <div class="panel-body">No links here</div>
+            <div class="panel-body"><p>No links here.</p></div>
         {% endif %}
     </div>
 </div>
