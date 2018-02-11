@@ -13,6 +13,9 @@
                 </div>
             </div>
             <div class="panel-body">
+                {% if object.author %}
+                    <small>Author: {{ object.author }}</small>
+                {% endif %}
                 <h3>{{ object.name }}</h3>
                 <a href="{{ object.url }}">{{ object.url }}</a>
             </div>
