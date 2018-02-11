@@ -17,12 +17,15 @@ class Category(TimedModel):
     class Meta:
         verbose_name_plural = 'Categories'
 
-    def __str__(self):
-        return self.name
+    def get_absolute_url(self):
+        return reverse('category_detail', kwargs={'pk': self.pk})
 
     def latest_links(self):
         result = self.link_set.order_by('-time_modified')[:10]
         return result
+
+    def __str__(self):
+        return self.name
 
 
 class Link(TimedModel):

@@ -96,7 +96,16 @@ class CategoryListView(LoginRequiredMixin, ListView):
     ordering = ['name']
 
 
+class CategoryDetailView(LoginRequiredMixin, DetailView):
+    model = models.Category
+
+
 class CategoryCreateView(LoginRequiredMixin, CreateView):
     model = models.Category
     form_class = forms.CategoryModelForm
     success_url = reverse_lazy('category_list')
+
+
+class CategoryUpdateView(LoginRequiredMixin, UpdateView):
+    model = models.Category
+    form_class = forms.CategoryModelForm
