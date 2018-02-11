@@ -7,6 +7,11 @@
         <div class="page-header">
             <h1 class="text-center">{{ object.name }} <small>category</small></h1>
         </div>
+        <div class="col-sm-offset-3 col-sm-6">
+            <a href="{% url 'link_create' %}?category={{ object.pk }}" class="btn btn-primary btn-block">New Link</a>
+        </div>
+        <br>
+        <br>
         <table class="table table-condensed table-hover">
             <thead>
                 <tr>
