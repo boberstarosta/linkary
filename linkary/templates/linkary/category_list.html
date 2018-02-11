@@ -9,16 +9,18 @@
         </div>
     </div>
     <div class="container-fluid">
+        <!-- New Category Button -->
         <div class="row">
-            <!-- Side menu -->
-            <div class="col-sm-2">
-                <div class="container">
-                    <a href="{% url 'category_create' %}" class="btn btn-primary">New Category</a>
-                </div>
+            <div class="col-sm-offset-3 col-sm-6">
+                <a href="{% url 'category_create' %}" class="btn btn-primary btn-block">New Category</a>
             </div>
-
-            <!-- Category list -->
-            <div class="col-sm-8">
+        </div>
+        <!-- Category list -->
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-8">
+        <br>
+        <hr>
+        <br>
                 <div class="container-fluid">
                     <div class="row row-eq-height">
                         {% for category in object_list %}
