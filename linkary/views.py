@@ -60,7 +60,7 @@ class LinkDeleteView(LoginRequiredMixin, DeleteView):
 
 class UserRegistrationView(View):
     form_class = forms.UserRegistrationForm
-    template_name = 'linkary/registration_form.html'
+    template_name = 'registration/registration_form.html'
 
     def get(self, request):
         form = self.form_class(None)
