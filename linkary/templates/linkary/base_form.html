@@ -1,12 +1,12 @@
 {% extends 'linkary/base.html' %}
 
-{% block title %}Link{% endblock %}
+{% block title %}Form{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3>Link</h3>
+            <h3>{% block form_title %}{% endblock %}</h3>
         </div>
         <div class="panel-body">
             <form class="form-horizontal" action="" method="post">
@@ -30,7 +30,7 @@
                 {% endfor %}
 
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
+                    <div class="col-sm-offset-1 col-sm-10">
                         <button type="submit" class="btn btn-success">Save</button>
                     </div>
                 </div>

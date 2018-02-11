@@ -3,6 +3,14 @@ from django import forms
 from . import models
 
 
+class BootstrapModelForm(forms.ModelForm):
+    """Adds class 'form-control' to every field, for Bootstrap."""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs.update({'class': 'form-control'})
+
+
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     password_confirm = forms.CharField(widget=forms.PasswordInput)
@@ -23,7 +31,7 @@ class UserRegistrationForm(forms.ModelForm):
         return cleaned_data
 
 
-class LinkModelForm(forms.ModelForm):
+class LinkModelForm(BootstrapModelForm):
     class Meta:
         model = models.Link
         exclude = ['author']

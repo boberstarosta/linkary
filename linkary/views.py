@@ -49,7 +49,8 @@ class LinkCreateView(LoginRequiredMixin, BootstrapFormMixin, View):
 
 class LinkUpdateView(LoginRequiredMixin, BootstrapFormMixin, UpdateView):
     model = models.Link
-    fields = ['url', 'name']
+    form_class = forms.LinkModelForm
+    template_name = 'linkary/link_update_form.html'
 
 
 class LinkDeleteView(LoginRequiredMixin, DeleteView):
