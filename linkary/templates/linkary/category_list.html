@@ -1,0 +1,20 @@
+{% extends 'linkary/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h1 class="text-center">Categories</h1>
+        </div>
+        <ul class="list-group">
+        </ul>
+        <div class="row">
+            {% for category in object_list %}
+                <div class="col-md-3">
+                    <h3>{{ category }}</h3>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

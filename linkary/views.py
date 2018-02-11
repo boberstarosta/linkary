@@ -13,6 +13,39 @@ class LinkListView(ListView):
     ordering = ['-time_created']
 
 
+class UserRegistrationView(View):
+    form_class = forms.UserRegistrationForm
+    template_name = 'registration/registration_form.html'
+
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+
+            user = form.save(commit=False)
+
+            # Cleaned (normalized) data
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user.username = username
+            user.set_password(password)
+            user.save()
+
+            # Returns user object if credentials are correct
+            user = auth.authenticate(username=username, password=password)
+
+            if user is not None:
+                if user.is_active:
+                    auth.login(request, user)
+                    return redirect('index')
+
+        return render(request, self.template_name, {'form': form})
+
+
 class LinkDetailView(LoginRequiredMixin, DetailView):
     model = models.Link
 
@@ -58,34 +91,6 @@ class LinkDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('index')
 
 
-class UserRegistrationView(View):
-    form_class = forms.UserRegistrationForm
-    template_name = 'registration/registration_form.html'
-
-    def get(self, request):
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request):
-        form = self.form_class(request.POST)
-
-        if form.is_valid():
-
-            user = form.save(commit=False)
-
-            # Cleaned (normalized) data
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user.username = username
-            user.set_password(password)
-            user.save()
-
-            # Returns user object if credentials are correct
-            user = auth.authenticate(username=username, password=password)
-
-            if user is not None:
-                if user.is_active:
-                    auth.login(request, user)
-                    return redirect('index')
-
-        return render(request, self.template_name, {'form': form})
+class CategoryListView(LoginRequiredMixin, ListView):
+    model = models.Category
+    ordering = ['name']
