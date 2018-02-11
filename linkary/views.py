@@ -103,12 +103,14 @@ class CategoryDetailView(LoginRequiredMixin, DetailView):
 class CategoryCreateView(LoginRequiredMixin, CreateView):
     model = models.Category
     form_class = forms.CategoryModelForm
+    template_name = 'linkary/category_create_form.html'
     success_url = reverse_lazy('category_list')
 
 
 class CategoryUpdateView(LoginRequiredMixin, UpdateView):
     model = models.Category
     form_class = forms.CategoryModelForm
+    template_name = 'linkary/category_update_form.html'
 
 
 class CategoryDeleteView(LoginRequiredMixin, DeleteView):
