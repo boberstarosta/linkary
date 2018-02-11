@@ -1,12 +1,12 @@
 {% extends 'linkary/base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Link Details{% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading clearfix">
-                <h3 class="panel-title pull-left" style="padding-top: 7.5px;">Link details</h3>
+                <h3 class="panel-title pull-left" style="padding-top: 7.5px;">{{ object.name }}</h3>
                 <div class="btn-group pull-right">
                     <a href="{% url 'link_edit' object.pk %}" class="btn btn-primary btn-sm" title="Edit">Edit</a>
                     <a href="{% url 'link_delete' object.pk %}" class="btn btn-warning btn-sm" title="Delete">Delete</a>
@@ -14,10 +14,19 @@
             </div>
             <div class="panel-body">
                 {% if object.author %}
-                    <small>Author: {{ object.author }}</small>
+                    Author: {{ object.author }}
                 {% endif %}
-                <h3>{{ object.name }}</h3>
-                <a href="{{ object.url }}">{{ object.url }}</a>
+                <p>
+                    Category: <strong>{{ object.category }}</strong>
+                    {% if object.category %}
+                        <a href="{% url 'category_detail' object.category.pk %}">
+                            <small>(more from {{ object.category.name }})</small>
+                        </a>
+                    {% endif %}
+                </p>
+                <p>
+                    <a href="{{ object.url }}">{{ object.url }}</a>
+                </p>
             </div>
         </div>
     </div>
