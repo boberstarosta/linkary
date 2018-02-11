@@ -1,0 +1,18 @@
+{% extends 'linkary/base.html' %}
+
+{% block title %}Deleting{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="alert alert-danger">
+            <form action="" method="post">
+                {% csrf_token %}
+                <h3>{{ object }}</h3>
+                <p>There are {{ object.link_set.count }} links in this category.</p>
+                <h4>Are you sure you want to delete this category?</h4>
+                <input class="btn btn-danger" type="submit" value="Confirm delete" />
+                <button onclick="window.history.back();" class="btn btn-default" type="button">Cancel</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

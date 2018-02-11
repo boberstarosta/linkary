@@ -109,3 +109,8 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
 class CategoryUpdateView(LoginRequiredMixin, UpdateView):
     model = models.Category
     form_class = forms.CategoryModelForm
+
+
+class CategoryDeleteView(LoginRequiredMixin, DeleteView):
+    model = models.Category
+    success_url = reverse_lazy('category_list')
