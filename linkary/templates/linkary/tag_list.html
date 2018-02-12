@@ -9,7 +9,7 @@
         </div>
         <div class="row">
             <div class="col-sm-offset-2 col-sm-8">
-                <a href="#" class="btn btn-primary btn-block">New Tag</a>
+                <a href="{% url 'tag_create' %}" class="btn btn-primary btn-block">New Tag</a>
             </div>
         </div>
         <br>
@@ -26,7 +26,7 @@
                     {% for tag in object_list %}
                         <tr>
                             <td>
-                                <a href="#" class="btn btn-default btn-xs" title="Details...">
+                                <a href="{% url 'tag_detail' tag.pk %}" class="btn btn-default btn-xs" title="Details...">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </a>&nbsp;
                                 <a href="#" class="btn btn-default btn-xs" title="Edit...">

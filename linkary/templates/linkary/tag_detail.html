@@ -1,0 +1,39 @@
+{% extends 'linkary/base.html' %}
+
+{% block title %}{{ object.name }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h1 class="text-center">{{ object.name }} <small>tag</small></h1>
+        </div>
+        <br>
+        <table class="table table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th>Links</th>
+                    <th class="text-right">Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for link in object.link_set.all %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'link_detail' link.pk %}" class="btn btn-default btn-xs" title="Details...">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>&nbsp;
+                            <a href="{% url 'link_edit' link.pk %}" class="btn btn-default btn-xs" title="Edit...">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>&nbsp;
+                            <a href="{% url 'link_delete' link.pk %}" class="btn btn-default btn-xs" title="Delete...">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>&nbsp;
+                            <a href="{{ link.url }}" target="_blank">{{ link.name }}</a>
+                        </td>
+                        <td class="text-right">{{ link.time_modified|date:'Y-m-d H:i:s' }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

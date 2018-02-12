@@ -41,3 +41,9 @@ class CategoryModelForm(BootstrapModelForm):
     class Meta:
         model = models.Category
         fields = ['name']
+
+
+class TagModelForm(BootstrapModelForm):
+    class Meta:
+        model = models.Tag
+        fields = ['name']

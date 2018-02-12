@@ -20,4 +20,6 @@ urlpatterns = [
     path('category/<int:pk>/delete/', views.CategoryDeleteView.as_view(), name='category_delete'),
 
     path('tag/', views.TagListView.as_view(), name='tag_list'),
+    path('tag/<int:pk>/', views.TagDetailView.as_view(), name='tag_detail'),
+    path('tag/new/', views.TagCreateView.as_view(), name='tag_create'),
 ]

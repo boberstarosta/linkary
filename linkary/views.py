@@ -132,3 +132,13 @@ class CategoryDeleteView(LoginRequiredMixin, DeleteView):
 
 class TagListView(LoginRequiredMixin, ListView):
     model = models.Tag
+
+
+class TagDetailView(LoginRequiredMixin, DetailView):
+    model = models.Tag
+
+
+class TagCreateView(LoginRequiredMixin, CreateView):
+    model = models.Tag
+    form_class = forms.TagModelForm
+    template_name = 'linkary/tag_create_form.html'
