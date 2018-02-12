@@ -142,3 +142,9 @@ class TagCreateView(LoginRequiredMixin, CreateView):
     model = models.Tag
     form_class = forms.TagModelForm
     template_name = 'linkary/tag_create_form.html'
+
+
+class TagUpdateView(LoginRequiredMixin, UpdateView):
+    model = models.Tag
+    form_class = forms.TagModelForm
+    template_name = 'linkary/tag_update_form.html'

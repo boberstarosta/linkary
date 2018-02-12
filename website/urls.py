@@ -22,4 +22,5 @@ urlpatterns = [
     path('tag/', views.TagListView.as_view(), name='tag_list'),
     path('tag/<int:pk>/', views.TagDetailView.as_view(), name='tag_detail'),
     path('tag/new/', views.TagCreateView.as_view(), name='tag_create'),
+    path('tag/<int:pk>/edit/', views.TagUpdateView.as_view(), name='tag_edit'),
 ]
