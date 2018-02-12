@@ -16,6 +16,7 @@
             <thead>
                 <tr>
                     <th>Links</th>
+                    <th>Time</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,6 +34,7 @@
                             </a>&nbsp;
                             <a href="{{ link.url }}" target="_blank">{{ link.name }}</a>
                         </td>
+                        <td class="text-right">{{ link.time_modified|date:'Y-m-d H:i:s' }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
