@@ -50,7 +50,7 @@
                         <a href="{% url 'link_delete' link.pk %}" class="btn btn-default btn-xs" title="Delete...">
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>&nbsp;
-                        <a href="{{ link.url }}">{{ link.name }}</a>
+                        <a href="{{ link.url }}" target="_blank">{{ link.name }}</a>
                     </td>
                     <td class="text-right">{{ link.time_modified|date:'Y-m-d H:i:s' }}</td>
                 </tr>
