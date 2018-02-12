@@ -51,7 +51,6 @@ class UserRegistrationView(View):
 class LinkListView(ListView):
     model = models.Link
     template_name = 'linkary/index.html'
-    ordering = ['-time_created']
 
 
 class LinkDetailView(LoginRequiredMixin, DetailView):

@@ -16,6 +16,7 @@ class Category(TimedModel):
 
     class Meta:
         verbose_name_plural = 'Categories'
+        ordering = ['name']
 
     def get_absolute_url(self):
         return reverse('category_detail', kwargs={'pk': self.pk})
@@ -36,6 +37,7 @@ class Link(TimedModel):
 
     class Meta:
         get_latest_by = ['time_created']
+        ordering = ['-time_modified']
 
     def get_absolute_url(self):
         return reverse('link_detail', kwargs={'pk': self.pk})
