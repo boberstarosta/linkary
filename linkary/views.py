@@ -148,3 +148,8 @@ class TagUpdateView(LoginRequiredMixin, UpdateView):
     model = models.Tag
     form_class = forms.TagModelForm
     template_name = 'linkary/tag_update_form.html'
+
+
+class TagDeleteView(LoginRequiredMixin, DeleteView):
+    model = models.Tag
+    success_url = reverse_lazy('tag_list')
