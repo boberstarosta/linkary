@@ -123,3 +123,12 @@ class CategoryUpdateView(LoginRequiredMixin, UpdateView):
 class CategoryDeleteView(LoginRequiredMixin, DeleteView):
     model = models.Category
     success_url = reverse_lazy('category_list')
+
+
+##################################################################
+#                          Tag Views                             #
+##################################################################
+
+
+class TagListView(LoginRequiredMixin, ListView):
+    model = models.Tag
