@@ -29,11 +29,22 @@ class Category(TimedModel):
         return self.name
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+
 class Link(TimedModel):
     url = models.URLField()
     name = models.CharField(max_length=500)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True)
+    tags = models.ManyToManyField(Tag, blank=True)
 
     class Meta:
         get_latest_by = ['time_created']
@@ -41,16 +52,6 @@ class Link(TimedModel):
 
     def get_absolute_url(self):
         return reverse('link_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return self.name
-
-
-class Tag(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-
-    class Meta:
-        ordering = ['name']
 
     def __str__(self):
         return self.name
