@@ -13,29 +13,23 @@
             </div>
         </div>
         <br>
-        <hr>
         <br>
         {% if object_list.count %}
             <table class="table table-condensed table-hover">
-                <thead>
-                    <tr>
-                        <th></th>
-                    </tr>
-                </thead>
                 <tbody>
                     {% for tag in object_list %}
                         <tr>
                             <td>
-                                <a href="{% url 'tag_detail' tag.pk %}" class="btn btn-default btn-xs" title="Details...">
-                                    <span class="glyphicon glyphicon-eye-open"></span>
-                                </a>&nbsp;
+                                <a href="{% url 'tag_detail' tag.pk %}">{{ tag.name }}</a>&nbsp;
+                            </td>
+                            <td>({{ tag.link_set.count }} links)</td>
+                            <td class="text-right">
                                 <a href="{% url 'tag_edit' tag.pk %}" class="btn btn-default btn-xs" title="Edit...">
                                     <span class="glyphicon glyphicon-edit"></span>
                                 </a>&nbsp;
                                 <a href="{% url 'tag_delete' tag.pk %}" class="btn btn-default btn-xs" title="Delete...">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>&nbsp;
-                                {{ tag.name }}
                             </td>
                         </tr>
                     {% endfor %}
